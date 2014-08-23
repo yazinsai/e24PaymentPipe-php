@@ -29,16 +29,6 @@ class e24PaymentPipe {
   var $SUCCESS = 0;
   var $FAILURE = -1;
   var $BUFFER = 2320;
-  var $strIDOpen = "<id>";
-  var $strPasswordOpen = "<password>";
-  var $strWebAddressOpen = "<webaddress>";
-  var $strPortOpen = "<port>";
-  var $strContextOpen = "<context>";
-  var $strIDClose = "</id>";
-  var $strPasswordClose = "</password>";
-  var $strWebAddressClose = "</webaddress>";
-  var $strPortClose = "</port>";
-  var $strContextClose = "</context>";
   var $webAddress;
   var $port;
   var $id;
