@@ -573,24 +573,15 @@ class e24PaymentPipe {
   }
 
   function parseSettings($s) {
-    $i = 0;
-    $j = 0;
-    $i = strpos($s, "<id>") + strlen("<id>");
-    $j = strpos($s, "</id>");
-
-    $this->setId(substr($s, $i, $j - $i));
-    $i = strpos($s, "<password>") + strlen("<password>");
-    $j = strpos($s, "</password>");
-    $this->setPassword(substr($s, $i, $j - $i));
-    $i = strpos($s, "<webaddress>") + strlen("<webaddress>");
-    $j = strpos($s, "</webaddress>");
-    $this->setWebAddress(substr($s, $i, $j - $i));
-    $i = strpos($s, "<port>") + strlen("<port>");
-    $j = strpos($s, "</port>");
-    $this->setPort(substr($s, $i, $j - $i));
-    $i = strpos($s, "<context>") + strlen("<context>");
-    $j = strpos($s, "</context>");
-    $this->setContext(substr($s, $i, $j - $i));
+    // Benefit doesn't wrap things in XML, so I've changed
+    // the parsing method to work with their format.
+    // Sample string: 08260900PRINT2012www.benefit-gateway.com443Gateway
+    preg_match('/^(?P<merchant>\d+)(?P<password>\S{9})(?P<url>\D+)(?P<port>\d+)(?P<context>\S+)/i',$s,$matches);
+    $this->setId($matches['id']);
+    $this->setPassword($matches['password']);
+    $this->setWebAddress($matches['url']);
+    $this->setPort($matches['port']);
+    $this->setContext($matches['context']);
     return true;
   }
 
