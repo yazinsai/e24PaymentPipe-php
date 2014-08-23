@@ -575,7 +575,6 @@ class e24PaymentPipe {
   function parseSettings($s) {
     // Benefit doesn't wrap things in XML, so I've changed
     // the parsing method to work with their format.
-    // Sample string: 08260900PRINT2012www.benefit-gateway.com443Gateway
     preg_match('/^(?P<merchant>\d+)(?P<password>\S{9})(?P<url>\D+)(?P<port>\d+)(?P<context>\S+)/i',$s,$matches);
     $this->setId($matches['id']);
     $this->setPassword($matches['password']);
