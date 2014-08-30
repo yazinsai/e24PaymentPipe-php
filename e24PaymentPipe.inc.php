@@ -567,7 +567,12 @@ class e24PaymentPipe {
     $this->setId($fields['terminal']['id']);
     $this->setPassword($fields['terminal']['password']);
     $this->setWebAddress($fields['terminal']['webaddress']);
-    $this->setPort($fields['terminal']['port']);
+    
+    // Port: Default to SSL (since some provider -- ehm, ehm -- Credimax, don't set one)
+    $port = $fields['terminal']['port'];
+    if(!is_int($port)) { $port = 443; }
+    $this->setPort($port);
+    
     $this->setContext($fields['terminal']['context']);
     return true;
   }
